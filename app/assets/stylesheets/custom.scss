@@ -87,6 +87,13 @@ p {
   color: grey;
 }
 
+.navbar-inverse .navbar-nav > .open > a, 
+.navbar-inverse .navbar-nav > .open > a:hover, 
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: teal;
+}
+
 
 
 /* デバッグウインドウ */

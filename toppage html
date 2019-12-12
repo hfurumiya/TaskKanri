@@ -1,8 +1,5 @@
 <% provide(:title, "Top") %>
 <div class="jumbotron">
-  <div class="container">
-    
-  </div>
   <h1>サンプルアプリ!</h1>
   <p>
     皆さんの手で、この最低限の土台となるアプリケーションから<br>
