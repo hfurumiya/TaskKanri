@@ -5,6 +5,7 @@
 
 body {
   padding-top: 60px;
+  background-color:#fff !important;
 }
 
 section {
@@ -48,6 +49,7 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  text-align:center;
 }
 
 /* ヘッダー */
@@ -123,4 +125,10 @@ p {
   .form-control {
     color: $state-danger-text;
   }
+  
+div {
+  background-color:#fff !important;
 }
+
+}
+
