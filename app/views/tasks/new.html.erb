@@ -1,0 +1,13 @@
+<h1>タスク新規作成</h1>
+
+<div class="newtask">
+  <% form_with(model: @task, url: user_tasks_path(@task) do |f| %>
+    <%= f.label :title, "名称" %>
+    <%= f.text_field :title %>
+    
+    <%= f.label :body, "詳細" %>
+    <%= f.text_area :body %>
+    
+    <%= f.submit "新規登録" %>
+  <% end %>
+</div>
