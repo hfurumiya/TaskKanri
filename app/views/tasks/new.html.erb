@@ -1,13 +1,18 @@
 <h1>タスク新規作成</h1>
 
-<div class="newtask">
-  <% form_with(model: @task, url: user_tasks_path(@task) do |f| %>
-    <%= f.label :title, "名称" %>
-    <%= f.text_field :title %>
+<div class="row">
+  <div class="col-md-８ col-offset-２">
+    <%= form_with(model: @task, url: user_tasks_path(@user)) do |f| %>
     
-    <%= f.label :body, "詳細" %>
-    <%= f.text_area :body %>
-    
-    <%= f.submit "新規登録" %>
-  <% end %>
+      <div class="parts">
+        <%= f.label :title, "名称", class: "label-form" %>
+        <%= f.text_field :title, class: "form-control" %>
+        
+        <%= f.label :body, "詳細", class: "label-form" %>
+        <%= f.text_area :body, class: "form-control" %>
+        
+        <%= f.submit "新規登録", class: "btn btn-lg btn-primary" %>
+      </div>
+   <% end %>
+  </div>
 </div>

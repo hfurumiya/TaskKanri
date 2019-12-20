@@ -1,0 +1,14 @@
+<h1> <%= @user.name %>のタスク一覧</h1>
+
+<% @tasks.each do |task| %>
+<div>
+  <ul>
+    <li>
+      <%= task.title %>
+      <%= task.created_at %>  
+      <%= link_to "編集", 'edit_user_task_path' %>
+      <%= link_to "削除", 'user_task', method: :delete %>
+    </li>
+  </ul>
+</div>
+<% end %>
