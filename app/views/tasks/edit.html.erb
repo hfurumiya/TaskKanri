@@ -1,18 +1,16 @@
-<h1>タスク新規作成</h1>
+<h1>タスク編集</h1>
 
 <div class="row">
   <div class="col-md-８ col-offset-２">
-    <%= form_with(model: @task, url: user_tasks_path(@user), method: :post, local: true) do |f| %>
-    
-      <div class="parts">
+    <%= form_with(model: @task, url: user_task_path(@user, @task), method: :patch, local: true) do |f| %>
         <%= f.label :title, "名称", class: "label-form" %>
         <%= f.text_field :title, class: "form-control" %>
         
         <%= f.label :body, "詳細", class: "label-form" %>
         <%= f.text_area :body, class: "form-control" %>
         
-        <%= f.submit "新規登録", class: "btn btn-lg btn-primary" %>
-      </div>
-   <% end %>
+        <%= f.submit "更新", class: "btn btn-sm btn-primary" %>
+        <%= link_to "キャンセル", user_tasks_path(@user), class: "btn btn-sm btn-outline-dark" %>
+    <% end %>
   </div>
 </div>

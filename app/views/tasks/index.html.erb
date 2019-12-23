@@ -1,14 +1,18 @@
 <h1> <%= @user.name %>のタスク一覧</h1>
 
-<% @tasks.each do |task| %>
 <div>
-  <ul>
-    <li>
-      <%= task.title %>
-      <%= task.created_at %>  
-      <%= link_to "編集", 'edit_user_task_path' %>
-      <%= link_to "削除", 'user_task', method: :delete %>
-    </li>
-  </ul>
+  <%= link_to "タスク新規作成", new_user_task_path(@user), class: "btn btn-primary" %>
 </div>
-<% end %>
+
+<div class="task-list">
+  <% @tasks.each do |task| %>
+    <ul>
+      <li>
+        名称 :<%= link_to task.title, user_task_path(@user, task) %>
+        作成日:<%= task.created_at %>
+        <%= link_to "編集", edit_user_task_path(@user, task), class: "btn btn-success" %>
+        <%= link_to "削除", user_task_path(@user, task), method: :delete, data:{ confirm: '消しますよ、これ？' }, class: "btn btn-danger" %>
+      </li>
+    </ul>
+  <% end %>
+</div>
