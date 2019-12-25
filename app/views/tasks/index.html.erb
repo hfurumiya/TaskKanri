@@ -1,18 +1,34 @@
 <h1> <%= @user.name %>のタスク一覧</h1>
 
-<div>
+<div class="text-right">
   <%= link_to "タスク新規作成", new_user_task_path(@user), class: "btn btn-primary" %>
 </div>
 
-<div class="task-list">
-  <% @tasks.each do |task| %>
-    <ul>
-      <li>
-        名称 :<%= link_to task.title, user_task_path(@user, task) %>
-        作成日:<%= task.created_at %>
-        <%= link_to "編集", edit_user_task_path(@user, task), class: "btn btn-success" %>
-        <%= link_to "削除", user_task_path(@user, task), method: :delete, data:{ confirm: '消しますよ、これ？' }, class: "btn btn-danger" %>
-      </li>
-    </ul>
-  <% end %>
+<div class="col-md-8 col-md-offset-2">
+  <table class="table table-condensed table-hover" id="table-users">
+    <thead>
+      <tr>
+          <th><%= Task.human_attribute_name :title %></th>
+          <th><%= Task.human_attribute_name :created_at %></th>
+      </tr>
+    </thead>
+    
+    <div class="task-list">
+      <% @tasks.each do |task| %>
+        <tr>
+          <td>
+            <%= link_to task.title, user_task_path(@user, task) %>
+          </td>
+          <td>
+            <%= l task.created_at %>
+          </td>
+          <td>
+            <%= link_to "編集", edit_user_task_path(@user, task), class: "btn btn-success" %>
+            <%= link_to "削除", user_task_path(@user, task), method: :delete, data:{ confirm: '消しますよ、これ？' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </div>
+  </table>
 </div>
+

@@ -1,0 +1,5 @@
+ja:
+  sessions:
+    index:
+      title: 名称
+      created_at: 作成日

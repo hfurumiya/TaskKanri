@@ -5,5 +5,5 @@ User.create!( name: "Sample User",
               password: "password",
               password_confirmation: "password")
               
-User.first.tasks.create!( title: "test title1",
-              body: "test body1")
+# User.first.tasks.create!( title: "test title1",
+#               body: "test body1")
