@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     @task.destroy
     if @task.save
       flash[:success] = "消しましたよ！"
-      redirect_to user_task_path
+      redirect_to user_tasks_path
     end
   end
   
