@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:destroy, :index]
   before_action :admin_or_correct_user, only: [:update, :edit, :destroy]
 
   def index
@@ -29,10 +29,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    if logged_in_user
-      flash[:notice] = "ログイン中です"
+    if logged_in?
+      flash[:danger] = 'すでにログイン中です。'
+    else
+      @user = User.new
     end
-    @user = User.new
   end
   
   def create
@@ -66,13 +67,13 @@ class UsersController < ApplicationController
     end
 
     # ログイン済みのユーザーか確認します。
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "ログインしてください。"
-        redirect_to login_url
-      end
-    end
+    # def logged_in_user
+    #   unless logged_in?
+    #     # store_location
+    #     # flash[:danger] = "ログインしてください。"
+    #     redirect_to login_url
+    #   end
+    # end
 
     # アクセスしたユーザーが現在ログインしているユーザーか確認します。
     def correct_user
