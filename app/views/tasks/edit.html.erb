@@ -3,6 +3,16 @@
 <div class="row">
   <div class="col-md-８ col-offset-２">
     <%= form_with(model: @task, url: user_task_path(@user, @task), method: :patch, local: true) do |f| %>
+      <% if @task.errors.any? %>
+        <div class="alert alert-danger">
+          <p>入力した内容に<%= @task.errors.count %>件のエラーがあります。</p>
+        </div>
+        <ul>
+          <% @task.errors.full_messages.each do |msg| %>
+          <li style="color:red"><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
         <%= f.label :title, "名称", class: "label-form" %>
         <%= f.text_field :title, class: "form-control" %>
         

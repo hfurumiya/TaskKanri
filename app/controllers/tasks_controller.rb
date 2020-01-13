@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_user
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
 
@@ -24,11 +25,11 @@ class TasksController < ApplicationController
   end
   
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
   
   def update
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     if @task.update(task_params)
       flash[:success] = "タスクを更新しました"
       redirect_to user_tasks_path
@@ -38,7 +39,7 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     @task.destroy
     if @task.save
       flash[:success] = "消しましたよ！"
@@ -47,7 +48,7 @@ class TasksController < ApplicationController
   end
   
   def show
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
   
   private
@@ -57,5 +58,12 @@ class TasksController < ApplicationController
     
     def task_params
       params.require(:task).permit(:title, :body)
+    end
+    
+    def set_task
+      unless @task = @user.tasks.find_by(id: params[:id])
+        flash[:danger] = "アクセスできません"
+        redirect_to user_tasks_url @user
+      end
     end
 end

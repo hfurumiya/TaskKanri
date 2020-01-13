@@ -1,10 +1,10 @@
 <h1>タスク詳細</h1>
 
 <p><%= @task.title %></p>
-<p><%= @task.body %></p>
+<p><%= auto_link(simple_format(@task.body), html: {target: '_blank'}) %></p>
 
 <div>
     <%= link_to "編集", edit_user_task_path(@user, @task), class:"btn btm-sm btn-success" %>
-    <%= link_to "キャンセル", user_tasks_path(@user), class:"btn btn-sm btn-outline-dark" %>
+    <%= link_to "キャンセル", user_tasks_path(@user), class:"btn btn-sm btn-danger" %>
 </div>
 
