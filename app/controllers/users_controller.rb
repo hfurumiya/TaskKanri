@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :admin_or_correct_user, only: [:update, :edit, :destroy]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page], per_page: 20)
   end
   
   def show
@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   def new
     if logged_in?
       flash[:danger] = 'すでにログイン中です。'
+      redirect_to current_user
     else
       @user = User.new
     end
